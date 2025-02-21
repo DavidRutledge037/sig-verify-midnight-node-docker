@@ -1,0 +1,23 @@
+{
+    "validator": {
+        "name": "midnight-validator",
+        "description": "Midnight node validator for privacy-preserving credentials",
+        "ticker": "MDNT",
+        "homepage": "https://midnight.network",
+        "extended": "https://midnight.network/extended-metadata.json"
+    },
+    "pool": {
+        "pledge": "100000000",
+        "cost": "340000000",
+        "margin": 0.03,
+        "rewardAccount": "",
+        "owners": [],
+        "relays": [
+            {
+                "host": "",
+                "port": 3001
+            }
+        ],
+        "metadataUrl": "https://midnight.network/pool-metadata.json"
+    }
+}

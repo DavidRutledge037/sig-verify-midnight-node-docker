@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  midnight-node:
+    image: inputoutput/midnight-node:latest  # This is a placeholder, actual image TBD
+    container_name: midnight-node
+    restart: unless-stopped
+    networks:
+      - partner-chain-net
+    volumes:
+      - node-ipc:/ipc
+      - ./cardano/config/preview:/config
+      - midnight-data:/data
+    environment:
+      - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+      - NETWORK=preview
+    depends_on:
+      cardano-node:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  midnight-data:
+
+networks:
+  partner-chain-net:
+    external: true

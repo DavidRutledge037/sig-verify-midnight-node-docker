@@ -1,0 +1,24 @@
+{
+    "network": {
+        "name": "preview",
+        "magic": 2
+    },
+    "cardano": {
+        "socketPath": "/ipc/node.socket",
+        "networkId": 2
+    },
+    "node": {
+        "dataDir": "/data",
+        "port": 8080,
+        "rpcPort": 9944,
+        "wsPort": 9945
+    },
+    "validator": {
+        "enabled": false,
+        "keyFile": "/config/validator-key.json"
+    },
+    "logging": {
+        "level": "info",
+        "format": "json"
+    }
+}

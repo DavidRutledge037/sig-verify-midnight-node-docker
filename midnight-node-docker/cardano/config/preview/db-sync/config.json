@@ -1,0 +1,128 @@
+{
+  "NodeConfigFile": "/config/cardano-node/config.json",
+  "RequiresNetworkMagic": "RequiresMagic",
+  "NetworkName": "preview",
+  "EnableLogging": true,
+  "EnableLogMetrics": false,
+  "NetworkMagic": 2,
+  "NodeSocket": "/ipc/node.socket",
+
+  "defaultBackends": [
+    "KatipBK"
+  ],
+  "defaultScribes": [
+    [
+      "StdoutSK",
+      "stdout"
+    ]
+  ],
+  "hasEKG": 12788,
+  "hasPrometheus": [
+    "127.0.0.1",
+    12798
+  ],
+  "minSeverity": "Info",
+  "options": {
+    "mapBackends": {
+      "cardano-db-sync.Mux": [
+        "KatipBK"
+      ],
+      "cardano.node.BlockFetchDecision": [
+        "KatipBK"
+      ],
+      "cardano.node.ChainDB": [
+        "KatipBK"
+      ]
+    },
+    "mapSubtrace": {
+      "#ekgview": {
+        "contents": [
+          [
+            {
+              "contents": "cardano.epoch-validation.benchmark",
+              "tag": "Contains"
+            },
+            [
+              {
+                "contents": ".monoclock.basic.",
+                "tag": "Contains"
+              }
+            ]
+          ],
+          [
+            {
+              "contents": "cardano.epoch-validation.benchmark",
+              "tag": "Contains"
+            },
+            [
+              {
+                "contents": "diff.RTS.cpuNs.timed.",
+                "tag": "Contains"
+              }
+            ]
+          ],
+          [
+            {
+              "contents": "#ekgview.#aggregation.cardano.epoch-validation.benchmark",
+              "tag": "StartsWith"
+            },
+            [
+              {
+                "contents": "diff.RTS.gcNum.timed.",
+                "tag": "Contains"
+              }
+            ]
+          ]
+        ],
+        "subtrace": "FilterTrace"
+      },
+      "benchmark": {
+        "contents": [
+          "GhcRtsStats",
+          "MonotonicClock"
+        ],
+        "subtrace": "ObservableTrace"
+      },
+      "cardano.epoch-validation.utxo-stats": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.ChainDB": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.DnsSubscription": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.ErrorPolicy": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.Mux": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.peers": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.BlockFetchDecision": {
+        "subtrace": "NoTrace"
+      },
+      "cardano.node.BlockFetchClient": {
+        "subtrace": "NoTrace"
+      }
+    }
+  },
+  "rotation": {
+    "rpKeepFilesNum": 10,
+    "rpLogLimitBytes": 5000000,
+    "rpMaxAgeHours": 24
+  },
+  "setupBackends": [
+    "KatipBK"
+  ],
+  "setupScribes": [
+    {
+      "scFormat": "ScText",
+      "scKind": "StdoutSK",
+      "scName": "stdout",
+      "scRotation": null
+    }
+  ]
+}
